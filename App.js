@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Button,
   TextInput,
-  ScrollView,
   FlatList,
 } from 'react-native';
+import TaskItem from './components/TaskItem';
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
@@ -39,9 +38,7 @@ export default function App() {
               data={tasks}
               renderItem={(itemData) => {
                 return (
-                    <View style={styles.taskItem}>
-                      <Text style={styles.taskText}>{itemData.item.text}</Text>
-                    </View>
+                    <TaskItem text={itemData.item.text} />
                 );
               }}
               keyExtractor={(item, index) => {
@@ -79,13 +76,4 @@ const styles = StyleSheet.create({
   tasksContainer: {
     flex: 5,
   },
-  taskItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: '#5e0acc',
-  },
-  taskText: {
-    color: 'white',
-  }
 });
