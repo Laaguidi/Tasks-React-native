@@ -1,7 +1,16 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 
 export default function App() {
+  const [tasks, setTasks] = useState([]);
   const [enteredTaskText, setEnteredTaskText] = useState('');
 
   function taskInputHandler(enteredText) {
@@ -9,7 +18,10 @@ export default function App() {
   }
 
   function addTaskHandler() {
-    console.log(enteredTaskText);
+    setTasks((currentTasks) => [
+      ...currentTasks,
+      { text: enteredTaskText, id: Math.random().toString() },
+    ])
   }
 
   return (
@@ -23,7 +35,20 @@ export default function App() {
           <Button title="Add Task" onPress={addTaskHandler} />
         </View>
         <View style={styles.tasksContainer}>
-          <Text>List of goals...</Text>
+          <FlatList
+              data={tasks}
+              renderItem={(itemData) => {
+                return (
+                    <View style={styles.taskItem}>
+                      <Text style={styles.taskText}>{itemData.item.text}</Text>
+                    </View>
+                );
+              }}
+              keyExtractor={(item, index) => {
+                return item.id;
+              }}
+              alwaysBounceVertical={false}
+          />
         </View>
       </View>
   );
@@ -54,4 +79,13 @@ const styles = StyleSheet.create({
   tasksContainer: {
     flex: 5,
   },
+  taskItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5e0acc',
+  },
+  taskText: {
+    color: 'white',
+  }
 });
