@@ -2,43 +2,43 @@ import { useState } from 'react';
 import {
   StyleSheet,
   View,
-  Button,
-  TextInput,
   FlatList,
 } from 'react-native';
 import TaskItem from './components/TaskItem';
+import TaskInput from "./components/TaskInput";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
-  const [enteredTaskText, setEnteredTaskText] = useState('');
 
-  function taskInputHandler(enteredText) {
-    setEnteredTaskText(enteredText);
-  }
 
-  function addTaskHandler() {
+
+
+  function addTaskHandler(enteredTaskText) {
     setTasks((currentTasks) => [
       ...currentTasks,
       { text: enteredTaskText, id: Math.random().toString() },
     ])
   }
 
+    function deleteTaskHandler(id) {
+        setTasks((currentTasks) => {
+            return currentTasks.filter((task) => task.id !== id);
+        });
+    }
+
   return (
       <View style={styles.appContainer}>
-        <View style={styles.inputContainer}>
-          <TextInput
-              style={styles.textInput}
-              placeholder="Your course task!"
-              onChangeText={taskInputHandler}
-          />
-          <Button title="Add Task" onPress={addTaskHandler} />
-        </View>
+        <TaskInput onAddTask={addTaskHandler} />
         <View style={styles.tasksContainer}>
           <FlatList
               data={tasks}
               renderItem={(itemData) => {
                 return (
-                    <TaskItem text={itemData.item.text} />
+                    <TaskItem
+                        text={itemData.item.text}
+                        onDeleteItem={deleteTaskHandler}
+                        id={itemData.item.id}
+                    />
                 );
               }}
               keyExtractor={(item, index) => {
@@ -57,22 +57,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 16,
   },
-  inputContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: '#cccccc',
-    width: '70%',
-    marginRight: 8,
-    padding: 8,
-  },
+
   tasksContainer: {
     flex: 5,
   },
