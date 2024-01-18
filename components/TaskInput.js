@@ -28,7 +28,7 @@ function TaskInput(props){
                 />
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
-                        <Button title="Add Task" onPress={addTaskHandler} color="#b180f0" />
+                        <Button title="Add Task" onPress={addTaskHandler} color="#be2edd" />
                     </View>
                     <View style={styles.button}>
                         <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
@@ -48,10 +48,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
-        marginBottom: 24,
-        borderBottomWidth: 1,
-        borderBottomColor: '#cccccc',
-        backgroundColor: '#311b6b',
+        //marginBottom: 24,
+        //borderBottomWidth: 1,
+        //borderBottomColor: '#cccccc',
+        //backgroundColor: '#311b6b',
+        backgroundColor:'#6F1E51'
     },
     textInput: {
         borderWidth: 1,
@@ -68,11 +69,13 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 100,
-        marginHorizontal: 8
+        marginHorizontal: 8,
+        borderRadius: 10
     },
     image: {
         width: 100,
         height: 100,
         margin: 20,
+        borderRadius: 6
     },
 });

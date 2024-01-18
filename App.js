@@ -15,9 +15,10 @@ export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   function addTaskHandler(enteredTaskText) {
+
     setTasks((currentTasks) => [
       ...currentTasks,
-      { text: enteredTaskText, id: Math.random().toString() },
+      { text: enteredTaskText, id: Math.random().toString()},
     ])
       endAddTaskHandler();
   }
@@ -67,13 +68,16 @@ export default function App() {
         saveTasks();
     }, [tasks]);
 
+
+
+
   return (
       <>
-      <StatusBar style="black"/>
+      <StatusBar backgroundColor="#6F1E51"/>
       <View style={styles.appContainer}>
           <Button
               title="Add New Task"
-              color="#a065ec"
+              color="#5758BB"
               onPress={startAddTaskHandler}
           />
         <TaskInput

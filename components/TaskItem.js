@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     taskItem: {
         margin: 8,
         borderRadius: 6,
-        backgroundColor: '#5e0acc',
+        backgroundColor: '#B53471',
     },
     taskText: {
         padding: 8,
@@ -30,4 +30,5 @@ const styles = StyleSheet.create({
     pressedItem: {
         opacity: 0.5,
     },
+
 });
