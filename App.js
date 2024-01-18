@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   View,
+    Button,
   FlatList,
 } from 'react-native';
 import TaskItem from './components/TaskItem';
@@ -9,16 +11,23 @@ import TaskInput from "./components/TaskInput";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
-
-
-
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   function addTaskHandler(enteredTaskText) {
     setTasks((currentTasks) => [
       ...currentTasks,
       { text: enteredTaskText, id: Math.random().toString() },
     ])
+      endAddTaskHandler();
   }
+
+    function startAddTaskHandler() {
+        setModalIsVisible(true);
+    }
+
+    function endAddTaskHandler() {
+        setModalIsVisible(false);
+    }
 
     function deleteTaskHandler(id) {
         setTasks((currentTasks) => {
@@ -27,8 +36,19 @@ export default function App() {
     }
 
   return (
+      <>
+      <StatusBar style="black"/>
       <View style={styles.appContainer}>
-        <TaskInput onAddTask={addTaskHandler} />
+          <Button
+              title="Add New Task"
+              color="#a065ec"
+              onPress={startAddTaskHandler}
+          />
+        <TaskInput
+            visible={modalIsVisible}
+            onAddTask={addTaskHandler}
+            onCancel={endAddTaskHandler}
+        />
         <View style={styles.tasksContainer}>
           <FlatList
               data={tasks}
@@ -48,6 +68,7 @@ export default function App() {
           />
         </View>
       </View>
+      </>
   );
 }
 
