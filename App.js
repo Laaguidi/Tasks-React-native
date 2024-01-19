@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+      backgroundColor: '#6F1E51'
   },
 
   tasksContainer: {
