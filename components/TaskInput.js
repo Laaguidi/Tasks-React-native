@@ -18,7 +18,7 @@ function TaskInput(props){
             <View style={styles.inputContainer}>
                 <Image
                     style={styles.image}
-                    source={require('../assets/images/tasks.png')}
+                    source={require('../assets/images/tasksWhite.png')}
                 />
                 <TextInput
                     style={styles.textInput}
