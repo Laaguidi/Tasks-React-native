@@ -15,12 +15,20 @@ export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   function addTaskHandler(enteredTaskText) {
+      // Validate if enteredTaskText is a number or consists only of characters
+      const isNumber = /^\d+$/.test(enteredTaskText);
+      const isOnlyCharacters = /^[a-zA-Z]+$/.test(enteredTaskText);
+      if (!isNumber && isOnlyCharacters) {
 
-    setTasks((currentTasks) => [
+          setTasks((currentTasks) => [
       ...currentTasks,
       { text: enteredTaskText, id: Math.random().toString()},
     ])
       endAddTaskHandler();
+  } else {
+          // Invalid input
+          alert('Please enter a valid task (not a number and not empty)');
+      }
   }
 
     function startAddTaskHandler() {
