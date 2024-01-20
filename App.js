@@ -14,22 +14,23 @@ export default function App() {
   const [tasks, setTasks] = useState([]);
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
-  function addTaskHandler(enteredTaskText) {
-      // Validate if enteredTaskText is a number or consists only of characters
-      const isNumber = /^\d+$/.test(enteredTaskText);
-      const isOnlyCharacters = /^[a-zA-Z]+$/.test(enteredTaskText);
-      if (!isNumber && isOnlyCharacters) {
 
-          setTasks((currentTasks) => [
-      ...currentTasks,
-      { text: enteredTaskText, id: Math.random().toString()},
-    ])
-      endAddTaskHandler();
-  } else {
-          // Invalid input
-          alert('Please enter a valid task (not a number and not empty)');
-      }
-  }
+    function addTaskHandler(enteredTaskText) {
+        // Validate if enteredTaskText contains at least one letter and not empty
+        const hasLetter = /[a-zA-Z]/.test(enteredTaskText);
+        const isEmpty = enteredTaskText.trim() === '';
+
+        if (hasLetter && !isEmpty) {
+            setTasks((currentTasks) => [
+                ...currentTasks,
+                { text: enteredTaskText, id: Math.random().toString() },
+            ]);
+            endAddTaskHandler();
+        } else {
+            // Invalid input
+            alert('Please enter a valid task (should contain at least one letter and not empty)');
+        }
+    }
 
     function startAddTaskHandler() {
         setModalIsVisible(true);

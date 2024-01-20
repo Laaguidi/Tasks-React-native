@@ -22,7 +22,7 @@ function TaskInput(props){
                 />
                 <TextInput
                     style={styles.textInput}
-                    placeholder="Your course task!"
+                    placeholder="Add Your Task!"
                     onChangeText={taskInputHandler}
                     value={enteredTaskText}
                 />
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         //borderBottomColor: '#cccccc',
         //backgroundColor: '#311b6b',
         backgroundColor:'#6F1E51'
+
     },
     textInput: {
         borderWidth: 1,
