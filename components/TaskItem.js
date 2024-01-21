@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text,Pressable } from 'react-native';
+import {StyleSheet, View, Text, Pressable, Dimensions} from 'react-native';
 
 function TaskItem(props) {
     return (
@@ -16,16 +16,19 @@ function TaskItem(props) {
 }
 
 export default TaskItem;
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     taskItem: {
         margin: 8,
         borderRadius: 6,
-        backgroundColor: '#B53471',
+        //backgroundColor: '#B53471',
+        backgroundColor:'#fab1a0',
+        padding: deviceWidth < 380 ? 12 : 9,
     },
     taskText: {
         padding: 8,
-        color: 'white',
+        color: 'black',
     },
     pressedItem: {
         opacity: 0.5,

@@ -1,11 +1,14 @@
-import {Button, TextInput, View, StyleSheet, Modal,Image} from "react-native";
+import {Button, TextInput, View, Text, StyleSheet, Modal,Image, Dimensions} from "react-native";
 import { useState } from 'react';
 
 
 function TaskInput(props){
     const [enteredTaskText, setEnteredTaskText] = useState('');
     function taskInputHandler(enteredText) {
-        setEnteredTaskText(enteredText);
+        //setEnteredTaskText(enteredText);
+        // Limit the text to 50 characters
+        const limitedText = enteredText.slice(0, 50);
+        setEnteredTaskText(limitedText);
     }
 
     function addTaskHandler() {
@@ -20,13 +23,24 @@ function TaskInput(props){
                     style={styles.image}
                     source={require('../assets/images/tasksWhite.png')}
                 />
-                <TextInput
+             {/*   <TextInput
                     style={styles.textInput}
                     placeholder="Add Your Task!"
                     onChangeText={taskInputHandler}
                     value={enteredTaskText}
+                />*/}
+                {/*add*/}
+                <TextInput
+                    style={[
+                        styles.textInput,
+                        { fontSize: deviceWidth < 500 ? 16 : 20 } // Adjust font size dynamically
+                    ]}
+                    placeholder="Add Your Task!"
+                    onChangeText={taskInputHandler}
+                    value={enteredTaskText}
                 />
-                <View style={styles.buttonContainer}>
+
+               <View style={styles.buttonContainer}>
                     <View style={styles.button}>
                         <Button title="Add Task" onPress={addTaskHandler} color="#be2edd" />
                     </View>
@@ -34,12 +48,15 @@ function TaskInput(props){
                         <Button title="Cancel" onPress={props.onCancel} color="#ED4C67" />
                     </View>
                 </View>
+
             </View>
         </Modal>
     );
 }
 
 export default TaskInput;
+//add
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     inputContainer: {
@@ -63,6 +80,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         width: '100%',
         padding: 8,
+        marginTop: 20
     },
     buttonContainer: {
         marginTop: 16,
@@ -75,8 +93,8 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 100,
-        height: 100,
-        margin: 20,
+        height: 85,
+        //margin: 20,
         borderRadius: 6
     },
 });
