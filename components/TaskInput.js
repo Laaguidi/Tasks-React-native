@@ -33,19 +33,30 @@ function TaskInput(props){
                 <TextInput
                     style={[
                         styles.textInput,
-                        { fontSize: deviceWidth < 500 ? 16 : 20 } // Adjust font size dynamically
+                        { fontSize: deviceWidth < 500 ? 16 : 28 } // Adjust font size dynamically
                     ]}
                     placeholder="Add Your Task!"
                     onChangeText={taskInputHandler}
                     value={enteredTaskText}
+                    //add
+                    autoFocus={true}
                 />
 
-               <View style={styles.buttonContainer}>
+             {/*  <View style={styles.buttonContainer}>
                     <View style={styles.button}>
                         <Button title="Add Task" onPress={addTaskHandler} color="#be2edd" />
                     </View>
                     <View style={styles.button}>
                         <Button title="Cancel" onPress={props.onCancel} color="#ED4C67" />
+                    </View>
+               </View>*/}
+
+                <View style={styles.buttonContainer}>
+                    <View style={[styles.button, styles.buttonAdd]}>
+                        <Text style={styles.buttonText}  onPress={addTaskHandler} color="#be2edd" >Add Task</Text>
+                    </View>
+                    <View style={[styles.button, styles.buttonCancel]}>
+                        <Text style={styles.buttonText}  onPress={props.onCancel} color="#ED4C67" >Cancel</Text>
                     </View>
                 </View>
 
@@ -87,9 +98,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     button: {
-        width: 100,
+        //width: 100,
         marginHorizontal: 8,
-        borderRadius: 10
+        borderRadius: 10,
+        //add
+        padding: deviceWidth < 380 ? 12 : 14,
+        fontSize: deviceWidth < 380 ? 17 : 30,
+        backgroundColor: "grey",
+        width: deviceWidth < 380 ? 10 : 150,
+        alignItems: "center",
     },
     image: {
         width: 100,
@@ -97,4 +114,15 @@ const styles = StyleSheet.create({
         //margin: 20,
         borderRadius: 6
     },
+    //add
+    buttonText: {
+        fontSize: Dimensions.get('window').width < 380 ? 17 : 20,
+        color: 'white',  // Add the desired text color
+    },
+    buttonAdd: {
+        backgroundColor: '#6c5ce7',
+    },
+    buttonCancel:{
+        backgroundColor: '#ED4C67',
+    }
 });

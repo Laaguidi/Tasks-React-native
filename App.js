@@ -81,9 +81,7 @@ export default function App() {
     }, [tasks]);
 
 
-
-
-  return (
+    return (
       <>
       <StatusBar backgroundColor="#6F1E51" />
       <View style={styles.appContainer}>
@@ -95,7 +93,7 @@ export default function App() {
           />*/}
           {/*  add */}
           <Text
-              style={[styles.button, { fontSize: deviceWidth < 500 ? 22 : 30 }]}
+              style={[styles.button, { fontSize: deviceWidth < 500 ? 21 : 30 }]}
               onPress={startAddTaskHandler}
           >
               Add New Task
@@ -171,10 +169,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#5758BB',
         color: 'white',
         paddingVertical: 8,
-        paddingHorizontal: 52,
+        paddingHorizontal: 82,
         borderRadius: 6,
         alignSelf: 'center',
         textAlign: 'center',
         marginBottom: 10,
     },
+
 });
